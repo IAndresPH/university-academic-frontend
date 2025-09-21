@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🔍 Revisando formato de commit..."
+
+npx --no -- commitlint --edit "$1" || {
+  echo "❌ Commit no sigue la convención!";
+  exit 1;
+}
