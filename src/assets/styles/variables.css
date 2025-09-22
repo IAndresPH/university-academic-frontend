@@ -1,0 +1,13 @@
+:root {
+  --primary: #1e6fb8; /* azul institucional */
+  --accent: #0f3b66;
+  --bg: #f5f8fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --success: #16a34a;
+  --danger: #ef4444;
+  --radius: 12px;
+  --shadow: 0 8px 20px rgba(11, 22, 38, 0.08);
+  --max-width-form: 420px;
+  --gap: 0.75rem;
+}
