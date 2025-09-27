@@ -5,16 +5,19 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "prepare": "husky install",
     "lint": "eslint . --ext .js,.mjs,.cjs,.vue,.json",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "@mdi/font": "5.9.55",
     "core-js": "^3.8.3",
+    "roboto-fontface": "*",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
-    "vuetify": "^3.10.2",
-    "vuex": "^4.0.0"
+    "vuetify": "^3.10.3",
+    "vuex": "^4.0.0",
+    "webfontloader": "^1.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
@@ -33,7 +36,11 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.6",
     "prettier": "^3.6.2",
-    "vue-eslint-parser": "^10.2.0"
+    "sass": "^1.93.2",
+    "sass-loader": "^10.5.2",
+    "vue-cli-plugin-vuetify": "~2.5.8",
+    "vue-eslint-parser": "^10.2.0",
+    "webpack-plugin-vuetify": "^2.0.0-alpha.0"
   },
   "browserslist": [
     "> 1%",
@@ -41,14 +48,14 @@
     "not dead",
     "not ie 11"
   ],
-  "volta": {
-    "node": "20.19.5",
-    "npm": "9.9.4"
-  },
   "lint-staged": {
     "*.{js,vue,json}": [
       "eslint --fix",
       "prettier --write"
     ]
+  },
+  "volta": {
+    "node": "20.19.5",
+    "npm": "9.9.4"
   }
 }

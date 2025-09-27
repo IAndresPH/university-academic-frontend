@@ -2,7 +2,7 @@
   <div class="page-auth">
     <div class="auth-card" role="region" aria-labelledby="login-title">
       <header class="auth-card__header">
-        <h1 id="login-title">Portal Estudiantil</h1>
+        <h1 id="login-title">Portal académico</h1>
         <p class="subtitle">Accede con tu cuenta institucional</p>
       </header>
 
