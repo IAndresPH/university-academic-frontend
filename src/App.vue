@@ -6,4 +6,12 @@
   </v-app>
 </template>
 
-<script setup></script>
+<script>
+  export default {
+    name: 'App',
+
+    data: () => ({
+      //
+    }),
+  };
+</script>
