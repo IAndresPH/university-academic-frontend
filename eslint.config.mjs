@@ -8,19 +8,27 @@ import { defineConfig } from "eslint/config";
 
 export default defineConfig([
   {
-    ignores: ["node_modules/**", "dist/**", "package-lock.json", "yarn.lock", "coverage/**"],
+    ignores: [
+      "node_modules/**",
+      "dist/**",
+      "package-lock.json",
+      "yarn.lock",
+      "coverage/**",
+    ],
   },
 
+  // JS
   {
     files: ["src/**/*.js"],
     plugins: { js, prettier: pluginPrettier },
     languageOptions: { globals: { ...globals.browser, process: "readonly" } },
     rules: {
       ...js.configs.recommended.rules,
-      quotes: ["error", "double"],
-      "prettier/prettier": ["error", { singleQuote: false }],
+      "prettier/prettier": "error",
     },
   },
+
+  // Vue
   {
     files: ["src/**/*.vue"],
     plugins: { vue: pluginVue, prettier: pluginPrettier },
@@ -29,11 +37,12 @@ export default defineConfig([
       globals: { ...globals.browser, process: "readonly" },
     },
     rules: {
+      ...pluginVue.configs["flat/recommended"][0].rules,
       "vue/multi-word-component-names": "off",
-      quotes: ["error", "double"],
-      "prettier/prettier": ["error", { singleQuote: false }],
+      "prettier/prettier": "error",
     },
   },
+
   {
     files: ["**/*.json"],
     plugins: { json },

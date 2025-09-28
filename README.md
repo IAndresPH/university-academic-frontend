@@ -1,43 +1,61 @@
-# Configuración del Router (HU-101)
+# HU-102 - Pantalla de Inicio de Sesión
 
-En esta historia de usuario se implementó la configuración inicial del **router** en la aplicación Vue 3, definiendo rutas **públicas** y **privadas** para controlar el acceso según el estado de autenticación del usuario.
+## Descripción de la HU
 
-## 🔓 Rutas públicas
+**Como usuario**, quiero ver una pantalla de inicio de sesión con campos de usuario y contraseña, validaciones de campos vacíos y botón de recordar sesión, para ingresar al sistema correctamente.
 
-Son accesibles para todos los usuarios, incluso si no están autenticados:
+## Alcance de la implementación
 
-- `/login` → Vista de inicio de sesión.
-- `/register` → Vista de registro de usuario.
-- `/forgot-password` → Vista para recuperación de contraseña.
+En esta historia de usuario se implementó:
 
-## 🔒 Rutas privadas
+- **Pantalla de inicio de sesión** usando Vue 3 + Vuetify 3.
+- **Formulario con validaciones** para usuario y contraseña (no permitir campos vacíos).
+- **Campo de recordar sesión** mediante un `v-checkbox`.
+- **Botón de acción principal (Ingresar)**, deshabilitado hasta que el formulario sea válido.
+- **Opción para recuperar contraseña**.
+- **Opción para registrarse** en caso de no tener cuenta.
+- **Sección de ayuda** con acceso a soporte académico.
+- **Diseño con enfoque académico**, incluyendo ícono institucional (`mdi-school`) y texto contextual.
 
-Solo accesibles para usuarios autenticados (requieren token en `localStorage`).
+## Estructura de archivos
 
-- `/dashboard` → Layout principal con secciones internas:
-  - `/dashboard/student` → Vista para estudiantes.
-  - `/dashboard/teacher` → Vista para docentes.
-  - `/dashboard/university` → Vista para universidades.
-
-- `/profile/settings` → Ajustes de perfil del usuario.
-
-## Mecanismo de protección
-
-Se agregó un **guard global** en el router:
-
-- Si una ruta tiene `meta.requiresAuth: true` y el usuario no está autenticado, se redirige automáticamente a `/login`.
-- Si el usuario está autenticado, se permite el acceso normalmente.
-
-```js
-router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !isAuthenticated()) {
-    next("/login");
-  } else {
-    next();
-  }
-});
 ```
 
-## Ruta por defecto
+src/
+├─ components/
+│   └─ auth/
+│       └─ LoginForm.vue
+├─ views/
+│   └─ LoginView\.vue
+├─ router/
+│   └─ index.js
 
-Cualquier ruta no definida redirige automáticamente a `/login`.
+```
+
+## UI / UX destacada
+
+- Layout centrado y responsivo usando `v-container` + `v-sheet`.
+- Inputs con estilo moderno (`filled`, `rounded`, `comfortable`).
+- Jerarquía visual clara: título → formulario → opciones → ayuda → registro.
+- Mensajes de validación visibles y accesibles.
+- Botones diferenciados:
+  - **Primary** para ingresar.
+  - **Outlined** para soporte.
+  - **Tonal (secondary)** para registrarse.
+
+## Cómo probar
+
+1. Acceder a la ruta `/login`.
+2. Ingresar usuario y contraseña:
+   - Si algún campo está vacío, mostrará mensaje de validación.
+   - El botón **Ingresar** se habilita solo si el formulario es válido.
+3. Opciones disponibles:
+   - Recordar sesión.
+   - ¿Olvidaste tu contraseña?
+   - Contactar soporte académico.
+   - Registrarse si no tienes cuenta.
+
+## Relación con la HU
+
+- **HU-102** implementada en la rama correspondiente.
+- Entrega funcional y alineada a los criterios de aceptación definidos.
