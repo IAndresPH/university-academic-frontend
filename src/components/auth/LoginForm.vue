@@ -5,8 +5,7 @@
         <v-icon size="48" color="primary">mdi-school</v-icon>
         <h2 class="text-h5 font-weight-bold mt-2 mb-1">Sistema Académico</h2>
         <p class="text-body-2 text-medium-emphasis">
-          Bienvenido al portal de gestión académica. Ingresa con tu usuario institucional para
-          continuar.
+          Bienvenido al portal de gestión académica. Ingresa con tu usuario institucional para continuar.
         </p>
       </div>
 
@@ -40,27 +39,13 @@
           />
 
           <div class="d-flex align-center justify-space-between">
-            <v-checkbox
-              v-model="form.rememberMe"
-              label="Recordar sesión"
-              color="primary"
-              hide-details
-            />
-            <v-btn variant="text" size="small" color="primary" class="text-caption">
+            <v-checkbox v-model="form.rememberMe" label="Recordar sesión" color="primary" hide-details />
+            <v-btn variant="text" size="small" color="primary" class="text-caption" @click="goToForgotPassword">
               ¿Olvidaste tu contraseña?
             </v-btn>
           </div>
 
-          <v-btn
-            color="primary"
-            size="large"
-            block
-            rounded
-            :disabled="!isValid"
-            @click="handleSubmit"
-          >
-            Ingresar
-          </v-btn>
+          <v-btn color="primary" size="large" block rounded :disabled="!isValid" @click="handleSubmit">Ingresar</v-btn>
         </div>
       </v-form>
 
@@ -80,11 +65,13 @@
 </template>
 
 <script setup>
+  import { useRouter } from "vue-router";
   import { ref, reactive } from "vue";
 
   const formRef = ref(null);
   const isValid = ref(false);
   const showPassword = ref(false);
+  const router = useRouter();
 
   const form = reactive({
     username: "",
@@ -105,5 +92,9 @@
     if (!valid) return;
 
     console.log("Formulario enviado ✅", form);
+  }
+
+  function goToForgotPassword() {
+    router.push({ name: "ForgotPassword" });
   }
 </script>
