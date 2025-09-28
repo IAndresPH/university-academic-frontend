@@ -1,61 +1,24 @@
-# HU-102 - Pantalla de Inicio de Sesión
+# HU-103: Recuperación de contraseña vía correo electrónico
 
-## Descripción de la HU
+## Descripción
 
-**Como usuario**, quiero ver una pantalla de inicio de sesión con campos de usuario y contraseña, validaciones de campos vacíos y botón de recordar sesión, para ingresar al sistema correctamente.
+Se implementó una **pantalla de recuperación de contraseña** que permite al usuario restablecer su acceso al sistema en caso de olvidar su contraseña. La funcionalidad se centra en enviar un **enlace de restablecimiento por correo electrónico**.
 
-## Alcance de la implementación
+## Funcionalidades principales
 
-En esta historia de usuario se implementó:
+- **Campo de correo electrónico** con validación para asegurar que se ingrese un correo válido.
+- **Botón de envío** para solicitar el enlace de recuperación.
+- **Botón de regreso al login** para facilitar la navegación.
+- **Mensajes informativos** y feedback al usuario sobre el estado de la solicitud.
+- Interfaz limpia y amigable, diseñada para un sistema académico, sin distracciones y con buena jerarquía visual.
 
-- **Pantalla de inicio de sesión** usando Vue 3 + Vuetify 3.
-- **Formulario con validaciones** para usuario y contraseña (no permitir campos vacíos).
-- **Campo de recordar sesión** mediante un `v-checkbox`.
-- **Botón de acción principal (Ingresar)**, deshabilitado hasta que el formulario sea válido.
-- **Opción para recuperar contraseña**.
-- **Opción para registrarse** en caso de no tener cuenta.
-- **Sección de ayuda** con acceso a soporte académico.
-- **Diseño con enfoque académico**, incluyendo ícono institucional (`mdi-school`) y texto contextual.
+## UX / UI
 
-## Estructura de archivos
+- Se priorizó la claridad y la facilidad de uso.
+- La vista incluye alertas informativas y mensajes amigables para guiar al usuario.
+- Los botones y formularios están separados con un espaciado adecuado y diseño profesional.
 
-```
+## Notas
 
-src/
-├─ components/
-│   └─ auth/
-│       └─ LoginForm.vue
-├─ views/
-│   └─ LoginView\.vue
-├─ router/
-│   └─ index.js
-
-```
-
-## UI / UX destacada
-
-- Layout centrado y responsivo usando `v-container` + `v-sheet`.
-- Inputs con estilo moderno (`filled`, `rounded`, `comfortable`).
-- Jerarquía visual clara: título → formulario → opciones → ayuda → registro.
-- Mensajes de validación visibles y accesibles.
-- Botones diferenciados:
-  - **Primary** para ingresar.
-  - **Outlined** para soporte.
-  - **Tonal (secondary)** para registrarse.
-
-## Cómo probar
-
-1. Acceder a la ruta `/login`.
-2. Ingresar usuario y contraseña:
-   - Si algún campo está vacío, mostrará mensaje de validación.
-   - El botón **Ingresar** se habilita solo si el formulario es válido.
-3. Opciones disponibles:
-   - Recordar sesión.
-   - ¿Olvidaste tu contraseña?
-   - Contactar soporte académico.
-   - Registrarse si no tienes cuenta.
-
-## Relación con la HU
-
-- **HU-102** implementada en la rama correspondiente.
-- Entrega funcional y alineada a los criterios de aceptación definidos.
+- La vista está preparada para integrarse con el backend y enviar solicitudes reales de recuperación de contraseña.
+- La navegación dentro de la aplicación se realiza mediante rutas seguras usando Vue Router.

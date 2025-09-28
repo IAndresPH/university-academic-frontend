@@ -24,14 +24,17 @@ export default defineConfig([
     languageOptions: { globals: { ...globals.browser, process: "readonly" } },
     rules: {
       ...js.configs.recommended.rules,
-      "prettier/prettier": "error",
+      "prettier/prettier": [
+        "error",
+        { singleQuote: false, htmlWhitespaceSensitivity: "ignore" },
+      ],
     },
   },
 
   // Vue
   {
     files: ["src/**/*.vue"],
-    plugins: { vue: pluginVue, prettier: pluginPrettier },
+    plugins: { vue: pluginVue },
     languageOptions: {
       parser: vueParser,
       globals: { ...globals.browser, process: "readonly" },
@@ -39,10 +42,10 @@ export default defineConfig([
     rules: {
       ...pluginVue.configs["flat/recommended"][0].rules,
       "vue/multi-word-component-names": "off",
-      "prettier/prettier": "error",
     },
   },
 
+  // JSON
   {
     files: ["**/*.json"],
     plugins: { json },
