@@ -59,6 +59,7 @@
             <td class="actions-col">
               <button class="mini" @click="ver(st)">Ver</button>
               <button class="mini warn" @click="editar(st)">Editar</button>
+              <button class="mini danger" @click="eliminar(st)">Eliminar</button>
             </td>
           </tr>
 
@@ -255,8 +256,13 @@
     alert(`Ver estudiante:\n${st.nombre} (${st.documento})`);
   };
   const editar = (st: Student) => {
-    // 🚀 navega a la ruta de edición con el documento como :id
     router.push({ name: 'EditarEstudiante', params: { id: st.documento } });
+  };
+  const eliminar = (st: Student) => {
+    if (confirm(`¿Eliminar estudiante ${st.nombre}?`)) {
+      const i = data.findIndex((x) => x.documento === st.documento);
+      if (i >= 0) data.splice(i, 1);
+    }
   };
 </script>
 
@@ -368,6 +374,10 @@
   .mini.warn {
     border-color: #f59e0b;
     color: #93460b;
+  }
+  .mini.danger {
+    border-color: #dc2626;
+    color: #b91c1c;
   }
   .empty {
     text-align: center;
