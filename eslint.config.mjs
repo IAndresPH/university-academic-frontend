@@ -1,41 +1,58 @@
 // eslint.config.mjs
-import js from '@eslint/js';
-import globals from 'globals';
-import pluginVue from 'eslint-plugin-vue';
-import pluginPrettier from 'eslint-plugin-prettier';
-import json from '@eslint/json';
-import vueParser from 'vue-eslint-parser';
-import { defineConfig } from 'eslint/config';
+import js from '@eslint/js'
+import pluginVue from 'eslint-plugin-vue'
+import vueParser from 'vue-eslint-parser'
+import tsParser from '@typescript-eslint/parser'
+import tsPlugin from '@typescript-eslint/eslint-plugin'
+import globals from 'globals'
 
-export default defineConfig([
+export default [
+  // ✅ Bloque base: define globals de browser y node
   {
-    files: ['src/**/*.js'],
-    plugins: { js, prettier: pluginPrettier },
-    languageOptions: { globals: { ...globals.browser, process: 'readonly' } },
-    rules: {
-      ...js.configs.recommended.rules,
-      'prettier/prettier': 'error',
-    },
+    files: ['**/*.{js,ts,vue}'],
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: 2021,
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,  // document, window, setTimeout, etc.
+        ...globals.node      // process, __dirname, etc.
+      }
+    }
   },
+
+  // Reglas base JS
+  js.configs.recommended,
+
+  // .vue (Vue 3) + TS dentro del <script>
   {
-    files: ['src/**/*.vue'],
-    plugins: { vue: pluginVue, prettier: pluginPrettier },
+    files: ['**/*.vue'],
     languageOptions: {
       parser: vueParser,
-      globals: { ...globals.browser, process: 'readonly' },
+      parserOptions: {
+        parser: tsParser,
+        ecmaVersion: 2021,
+        sourceType: 'module'
+      }
     },
+    plugins: { vue: pluginVue },
     rules: {
-      'vue/multi-word-component-names': 'off',
-      'prettier/prettier': 'error',
-    },
+      ...pluginVue.configs['flat/recommended'].rules,
+      'vue/multi-word-component-names': 'off'
+    }
   },
+
+  // Archivos .ts/.tsx
   {
-    files: ['**/*.json'],
-    ignores: ['package-lock.json', 'yarn.lock'], // Ignora los lockfiles
-    plugins: { json },
-    language: 'json/json',
+    files: ['**/*.{ts,tsx}'],
+    plugins: { '@typescript-eslint': tsPlugin },
     rules: {
-      ...json.configs.recommended.rules,
+      ...tsPlugin.configs.recommended.rules,
+      '@typescript-eslint/no-explicit-any': 'off'
     },
-  },
-]);
+    rules: {
+  'no-redeclare': 'off',
+  '@typescript-eslint/no-redeclare': ['error']
+}
+  }
+]

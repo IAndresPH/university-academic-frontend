@@ -35,6 +35,12 @@ const routes = [
         component: () => import('@/views/dashboard/DashboardUniversity.vue'),
         meta: { title: 'Panel Universidad' },
       },
+      {
+        path: 'registrar-estudiante',
+        name: 'RegistrarEstudiante',
+        component: () => import('@/views/dashboard/RegistrarEstudiante.vue'),
+        meta: { title: '  ' },
+      },
     ],
   },
 ];
@@ -44,14 +50,10 @@ const router = createRouter({
   routes,
 });
 
-export default router;
-
 router.beforeEach((to, from, next) => {
-  const appName = 'Portal Académico - ';
-  if (to.meta.title) {
-    document.title = `${to.meta.title} – ${appName}`;
-  } else {
-    document.title = appName;
-  }
+  const appName = 'Portal Académico';
+  document.title = to.meta.title ? `${to.meta.title} – ${appName}` : appName;
   next();
 });
+
+export default router;
