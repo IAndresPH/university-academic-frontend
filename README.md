@@ -1,24 +1,26 @@
-# HU-103: Recuperación de contraseña vía correo electrónico
+# HU-104: Registro de usuario
 
 ## Descripción
 
-Se implementó una **pantalla de recuperación de contraseña** que permite al usuario restablecer su acceso al sistema en caso de olvidar su contraseña. La funcionalidad se centra en enviar un **enlace de restablecimiento por correo electrónico**.
+Como usuario, quiero registrarme en el sistema proporcionando mis datos básicos, para crear mi cuenta de acceso.
 
-## Funcionalidades principales
+## Alcance de la historia de usuario
 
-- **Campo de correo electrónico** con validación para asegurar que se ingrese un correo válido.
-- **Botón de envío** para solicitar el enlace de recuperación.
-- **Botón de regreso al login** para facilitar la navegación.
-- **Mensajes informativos** y feedback al usuario sobre el estado de la solicitud.
-- Interfaz limpia y amigable, diseñada para un sistema académico, sin distracciones y con buena jerarquía visual.
+- Se implementó un **formulario de registro** con validaciones en tiempo real.
+- Se solicitaron los siguientes campos:
+  - **Correo institucional**
+  - **Contraseña**
+  - **Confirmar contraseña**
 
-## UX / UI
+- Se agregaron mensajes de validación amigables para mejorar la experiencia de usuario.
+- Se incluyó retroalimentación visual mediante un **snackbar** al enviar el registro.
+- Se mantuvo la separación de responsabilidades:
+  - `RegisterForm.vue` → Lógica y diseño del formulario.
+  - `RegisterView.vue` → Vista principal que utiliza el formulario.
 
-- Se priorizó la claridad y la facilidad de uso.
-- La vista incluye alertas informativas y mensajes amigables para guiar al usuario.
-- Los botones y formularios están separados con un espaciado adecuado y diseño profesional.
+## Buenas prácticas aplicadas
 
-## Notas
-
-- La vista está preparada para integrarse con el backend y enviar solicitudes reales de recuperación de contraseña.
-- La navegación dentro de la aplicación se realiza mediante rutas seguras usando Vue Router.
+- Uso de **Vuetify 3** para lograr una UI consistente y moderna.
+- Separación de componentes para mejorar la escalabilidad y el mantenimiento.
+- Validaciones de campos obligatorios, formato de correo y coincidencia de contraseñas.
+- Diseño pensado en **usabilidad (UX)** con mensajes claros y botones accesibles.
