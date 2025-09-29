@@ -80,6 +80,10 @@
 
 <script setup lang="ts">
   import { computed, reactive, ref, watch } from 'vue';
+  import { useRouter } from 'vue-router';
+
+  /** Router para navegar al editor */
+  const router = useRouter();
 
   /** Mock de estudiantes (reemplaza por fetch a tu API) */
   type Student = {
@@ -246,12 +250,13 @@
   };
   const hayFiltros = computed(() => !!search.value || !!programa.value || !!semestre.value);
 
-  /** Acciones (ejemplos) */
+  /** Acciones */
   const ver = (st: Student) => {
     alert(`Ver estudiante:\n${st.nombre} (${st.documento})`);
   };
   const editar = (st: Student) => {
-    alert(`Editar estudiante:\n${st.nombre} (${st.documento})`);
+    // 🚀 navega a la ruta de edición con el documento como :id
+    router.push({ name: 'EditarEstudiante', params: { id: st.documento } });
   };
 </script>
 

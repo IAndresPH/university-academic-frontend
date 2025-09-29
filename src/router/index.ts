@@ -42,6 +42,13 @@ const routes = [
         meta: { title: '  ' },
       },
       {
+        path: 'estudiantes/:id/editar',
+        name: 'EditarEstudiante',
+        component: () => import('@/views/dashboard/EditarEstudiante.vue'),
+        meta: { title: 'Editar Estudiante' },
+      },
+
+      {
         path: 'estudiantes',
         name: 'EstudiantesTabla',
         component: () => import('@/views/dashboard/EstudiantesTabla.vue'),
