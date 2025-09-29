@@ -11,16 +11,16 @@ const routes = [
     component: () => import("@/views/LoginView.vue"),
     meta: { requiresAuth: false },
   },
-  // {
-  //   path: "/register",
-  //   name: "Register",
-  //   component: () => import("@/views/Register.vue"),
-  //   meta: { requiresAuth: false },
-  // },
+  {
+    path: "/register",
+    name: "Register",
+    component: () => import("@/views/RegisterView.vue"),
+    meta: { requiresAuth: false },
+  },
   {
     path: "/forgot-password",
     name: "ForgotPassword",
-    component: () => import("@/components/auth/ForgotPasswordForm.vue"),
+    component: () => import("@/views/RecoveryPasswordView.vue"),
     meta: { requiresAuth: false },
   },
 

@@ -40,7 +40,7 @@
 
           <div class="d-flex align-center justify-space-between">
             <v-checkbox v-model="form.rememberMe" label="Recordar sesión" color="primary" hide-details />
-            <v-btn variant="text" size="small" color="primary" class="text-caption" @click="goToForgotPassword">
+            <v-btn variant="text" size="small" color="primary" class="text-caption" @click="$emit('goPassword')">
               ¿Olvidaste tu contraseña?
             </v-btn>
           </div>
@@ -58,7 +58,7 @@
       <v-divider class="my-6" />
       <div class="text-center">
         <p class="text-body-2">¿No tienes cuenta?</p>
-        <v-btn variant="tonal" size="small" color="secondary">Registrarse</v-btn>
+        <v-btn variant="tonal" size="small" color="secondary" @click="$emit('goRegister')">Registrarse</v-btn>
       </div>
     </v-sheet>
   </v-container>
@@ -92,9 +92,5 @@
     if (!valid) return;
 
     console.log("Formulario enviado ✅", form);
-  }
-
-  function goToForgotPassword() {
-    router.push({ name: "ForgotPassword" });
   }
 </script>
