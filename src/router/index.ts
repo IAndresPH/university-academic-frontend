@@ -41,6 +41,12 @@ const routes = [
         component: () => import('@/views/dashboard/RegistrarEstudiante.vue'),
         meta: { title: '  ' },
       },
+      {
+        path: 'estudiantes',
+        name: 'EstudiantesTabla',
+        component: () => import('@/views/dashboard/EstudiantesTabla.vue'),
+        meta: { title: 'Estudiantes' },
+      },
     ],
   },
 ];

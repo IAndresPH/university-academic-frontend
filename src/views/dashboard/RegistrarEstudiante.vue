@@ -314,7 +314,7 @@
     serverOk.value = false;
     try {
       // await axios.post('/api/estudiantes', form)
-      await new Promise((res) => window.setTimeout(res, 600)); // simulación
+      await new Promise((res) => setTimeout(res, 600)); // simulación
       serverOk.value = true;
       serverMsg.value = 'Estudiante registrado correctamente.';
       resetForm();
