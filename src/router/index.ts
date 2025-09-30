@@ -49,6 +49,13 @@ const routes = [
       },
 
       {
+        path: '/dashboard/perfil',
+        name: 'PerfilEstudiante',
+        component: () => import('@/views/dashboard/PerfilEstudiante.vue'),
+        meta: { title: 'Perfil del Estudiante' },
+      },
+
+      {
         path: 'estudiantes',
         name: 'EstudiantesTabla',
         component: () => import('@/views/dashboard/EstudiantesTabla.vue'),
