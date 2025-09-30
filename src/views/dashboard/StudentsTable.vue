@@ -59,6 +59,7 @@
             <td class="actions-col">
               <button class="mini" @click="ver(st)">Ver</button>
               <button class="mini warn" @click="editar(st)">Editar</button>
+              <button class="mini danger" @click="eliminar(st)">Eliminar</button>
             </td>
           </tr>
 
@@ -80,6 +81,10 @@
 
 <script setup lang="ts">
   import { computed, reactive, ref, watch } from 'vue';
+  import { useRouter } from 'vue-router';
+
+  /** Router para navegar al editor */
+  const router = useRouter();
 
   /** Mock de estudiantes (reemplaza por fetch a tu API) */
   type Student = {
@@ -246,12 +251,18 @@
   };
   const hayFiltros = computed(() => !!search.value || !!programa.value || !!semestre.value);
 
-  /** Acciones (ejemplos) */
+  /** Acciones */
   const ver = (st: Student) => {
     alert(`Ver estudiante:\n${st.nombre} (${st.documento})`);
   };
   const editar = (st: Student) => {
-    alert(`Editar estudiante:\n${st.nombre} (${st.documento})`);
+    router.push({ name: 'EditarEstudiante', params: { id: st.documento } });
+  };
+  const eliminar = (st: Student) => {
+    if (confirm(`¿Eliminar estudiante ${st.nombre}?`)) {
+      const i = data.findIndex((x) => x.documento === st.documento);
+      if (i >= 0) data.splice(i, 1);
+    }
   };
 </script>
 
@@ -363,6 +374,10 @@
   .mini.warn {
     border-color: #f59e0b;
     color: #93460b;
+  }
+  .mini.danger {
+    border-color: #dc2626;
+    color: #b91c1c;
   }
   .empty {
     text-align: center;

@@ -15,37 +15,38 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('@/views/dashboard/Dashboard.vue'),
-    meta: { title: 'Panel' },
+    meta: { title: 'Dashboard' },
     children: [
       {
         path: 'student',
         name: 'DashboardStudent',
         component: () => import('@/views/dashboard/DashboardStudent.vue'),
-        meta: { title: 'Panel Estudiante' },
+        meta: { title: 'Student Dashboard' },
       },
       {
         path: 'teacher',
         name: 'DashboardTeacher',
         component: () => import('@/views/dashboard/DashboardTeacher.vue'),
-        meta: { title: 'Panel Docente' },
+        meta: { title: 'Teacher Dashboard' },
       },
       {
         path: 'university',
         name: 'DashboardUniversity',
         component: () => import('@/views/dashboard/DashboardUniversity.vue'),
-        meta: { title: 'Panel Universidad' },
+        meta: { title: 'University Dashboard' },
       },
       {
-        path: 'registrar-estudiante',
-        name: 'RegistrarEstudiante',
-        component: () => import('@/views/dashboard/RegistrarEstudiante.vue'),
-        meta: { title: '  ' },
+        path: 'register-student',
+        name: 'RegisterStudent',
+        component: () => import('@/views/dashboard/RegisterStudent.vue'),
+        meta: { title: 'Register Student' },
       },
+
       {
-        path: 'estudiantes',
-        name: 'EstudiantesTabla',
-        component: () => import('@/views/dashboard/EstudiantesTabla.vue'),
-        meta: { title: 'Estudiantes' },
+        path: 'students',
+        name: 'StudentsTable',
+        component: () => import('@/views/dashboard/StudentsTable.vue'),
+        meta: { title: 'Students' },
       },
     ],
   },
@@ -56,9 +57,9 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  const appName = 'Portal Académico';
-  document.title = to.meta.title ? `${to.meta.title} – ${appName}` : appName;
+router.beforeEach((to, _from, next) => {
+  const appName = 'Academic Portal';
+  document.title = to.meta?.title ? `${to.meta.title} – ${appName}` : appName;
   next();
 });
 
