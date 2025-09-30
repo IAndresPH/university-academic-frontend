@@ -24,28 +24,29 @@ const routes = [
     meta: { requiresAuth: false },
   },
 
-  // {
-  //   path: "/dashboard",
-  //   component: () => import("@/layouts/DashboardLayout.vue"),
-  //   meta: { requiresAuth: true },
-  //   children: [
-  //     {
-  //       path: "student",
-  //       name: "DashboardStudent",
-  //       component: () => import("@/views/Dashboard/Student.vue"),
-  //     },
-  //     {
-  //       path: "teacher",
-  //       name: "DashboardTeacher",
-  //       component: () => import("@/views/Dashboard/Teacher.vue"),
-  //     },
-  //     {
-  //       path: "university",
-  //       name: "DashboardUniversity",
-  //       component: () => import("@/views/Dashboard/University.vue"),
-  //     },
-  //   ],
-  // },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () => import("@/components/dashboard/DashboardLayout.vue"),
+    meta: { requiresAuth: true },
+    // children: [
+    //   {
+    //     path: "student",
+    //     name: "DashboardStudent",
+    //     component: () => import("@/views/Dashboard/Student.vue"),
+    //   },
+    //   {
+    //     path: "teacher",
+    //     name: "DashboardTeacher",
+    //     component: () => import("@/views/Dashboard/Teacher.vue"),
+    //   },
+    //   {
+    //     path: "university",
+    //     name: "DashboardUniversity",
+    //     component: () => import("@/views/Dashboard/University.vue"),
+    //   },
+    // ],
+  },
 
   // {
   //   path: "/profile/settings",

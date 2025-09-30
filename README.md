@@ -1,26 +1,26 @@
-# HU-104: Registro de usuario
+# HU-105: Mensajes claros de error en el login
 
-## Descripción
+## Descripción de la historia de usuario
 
-Como usuario, quiero registrarme en el sistema proporcionando mis datos básicos, para crear mi cuenta de acceso.
+**Como usuario**, quiero recibir mensajes claros de error (credenciales inválidas, usuario no encontrado, etc.), **para comprender la causa del fallo en el login**.
 
-## Alcance de la historia de usuario
+## Objetivo
 
-- Se implementó un **formulario de registro** con validaciones en tiempo real.
-- Se solicitaron los siguientes campos:
-  - **Correo institucional**
-  - **Contraseña**
-  - **Confirmar contraseña**
+Brindar retroalimentación clara y precisa al usuario en el proceso de autenticación, de forma que sepa por qué su acceso no fue exitoso y pueda tomar acciones correctivas.
 
-- Se agregaron mensajes de validación amigables para mejorar la experiencia de usuario.
-- Se incluyó retroalimentación visual mediante un **snackbar** al enviar el registro.
-- Se mantuvo la separación de responsabilidades:
-  - `RegisterForm.vue` → Lógica y diseño del formulario.
-  - `RegisterView.vue` → Vista principal que utiliza el formulario.
+## Cambios realizados
 
-## Buenas prácticas aplicadas
+- Se integró un sistema de mensajes de error en el flujo de login.
+- Los mensajes son visibles en la interfaz del formulario de inicio de sesión mediante un componente de alerta.
+- Se diferenciaron los principales casos de error, por ejemplo:
+  - Credenciales inválidas.
+  - Usuario no encontrado.
+  - Problemas de conexión con el servidor.
 
-- Uso de **Vuetify 3** para lograr una UI consistente y moderna.
-- Separación de componentes para mejorar la escalabilidad y el mantenimiento.
-- Validaciones de campos obligatorios, formato de correo y coincidencia de contraseñas.
-- Diseño pensado en **usabilidad (UX)** con mensajes claros y botones accesibles.
+- Se garantizó que los mensajes se muestren de forma clara, en un tono entendible y no técnico para el usuario final.
+
+## Resultados esperados
+
+- El usuario tiene claridad inmediata sobre la causa del error al intentar iniciar sesión.
+- Mejora la experiencia de uso, ya que no queda en incertidumbre sobre lo que falló.
+- Se establece una base para mantener consistencia en los mensajes de error dentro del sistema.
