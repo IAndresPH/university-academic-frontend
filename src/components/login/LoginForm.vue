@@ -1,23 +1,24 @@
 <template>
   <v-container fluid class="d-flex align-center justify-center fill-height">
-    <v-sheet elevation="8" rounded="lg" class="pa-8" max-width="460" width="100%">
-      <div class="text-center mb-6">
-        <v-icon size="48" color="primary">mdi-school</v-icon>
-        <h2 class="text-h5 font-weight-bold mt-2 mb-1">Sistema Académico</h2>
-        <p class="text-body-2 text-medium-emphasis">
-          Bienvenido al portal de gestión académica. Ingresa con tu usuario institucional para continuar.
-        </p>
+    <v-sheet elevation="8" rounded="lg" class="pa-6" max-width="420" width="100%" style="min-height: 540px">
+      <div class="text-center mb-4">
+        <v-icon size="40" color="primary">mdi-school</v-icon>
+        <h2 class="text-h6 font-weight-bold mt-2 mb-1">Sistema Académico</h2>
+        <p class="text-body-2 text-medium-emphasis">Ingresa con tu correo institucional para continuar.</p>
       </div>
 
-      <v-divider class="mb-6" />
+      <v-divider class="mb-4" />
+
+      <v-alert v-if="errorMessage" type="error" border="start" colored-border class="mb-3" density="compact">
+        {{ errorMessage }}
+      </v-alert>
 
       <v-form ref="formRef" v-model="isValid" lazy-validation>
-        <div class="d-flex flex-column gap-4">
+        <div class="d-flex flex-column gap-3">
           <v-text-field
-            v-model="form.username"
-            label="Usuario"
-            prepend-inner-icon="mdi-account"
-            :rules="[rules.required]"
+            v-model="form.email"
+            label="Correo institucional"
+            prepend-inner-icon="mdi-email"
             variant="filled"
             density="comfortable"
             clearable
@@ -29,9 +30,8 @@
             label="Contraseña"
             prepend-inner-icon="mdi-lock"
             :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
-            @click:append-inner="togglePassword"
+            @click:append-inner="$emit('togglePassword')"
             :type="showPassword ? 'text' : 'password'"
-            :rules="[rules.required]"
             variant="filled"
             density="comfortable"
             clearable
@@ -45,17 +45,12 @@
             </v-btn>
           </div>
 
-          <v-btn color="primary" size="large" block rounded :disabled="!isValid" @click="handleSubmit">Ingresar</v-btn>
+          <v-btn color="primary" size="large" block rounded @click="$emit('submit')">Ingresar</v-btn>
         </div>
       </v-form>
 
-      <v-divider class="my-6" />
-      <div class="text-center">
-        <p class="text-body-2 mb-2">¿Necesitas ayuda?</p>
-        <v-btn variant="outlined" size="small" color="primary">Contactar soporte académico</v-btn>
-      </div>
+      <v-divider class="my-5" />
 
-      <v-divider class="my-6" />
       <div class="text-center">
         <p class="text-body-2">¿No tienes cuenta?</p>
         <v-btn variant="tonal" size="small" color="secondary" @click="$emit('goRegister')">Registrarse</v-btn>
@@ -65,32 +60,26 @@
 </template>
 
 <script setup>
-  import { useRouter } from "vue-router";
   import { ref, reactive } from "vue";
+
+  defineProps({
+    errorMessage: String,
+    showPassword: Boolean,
+  });
+
+  defineEmits(["submit", "togglePassword", "goPassword", "goRegister"]);
 
   const formRef = ref(null);
   const isValid = ref(false);
-  const showPassword = ref(false);
-  const router = useRouter();
 
   const form = reactive({
-    username: "",
+    email: "",
     password: "",
     rememberMe: false,
   });
 
-  const rules = {
-    required: (value) => !!value || "Este campo es obligatorio",
-  };
-
-  function togglePassword() {
-    showPassword.value = !showPassword.value;
-  }
-
-  async function handleSubmit() {
-    const { valid } = await formRef.value.validate();
-    if (!valid) return;
-
-    console.log("Formulario enviado ✅", form);
-  }
+  defineExpose({
+    formRef,
+    form,
+  });
 </script>
