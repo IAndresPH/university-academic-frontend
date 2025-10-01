@@ -1,26 +1,27 @@
-# HU-105: Mensajes claros de error en el login
+# HU-106: Acceso a panel principal con menús según rol
 
-## Descripción de la historia de usuario
+## Descripción
 
-**Como usuario**, quiero recibir mensajes claros de error (credenciales inválidas, usuario no encontrado, etc.), **para comprender la causa del fallo en el login**.
+Se implementó un **panel principal (Dashboard)** que se muestra al usuario después de iniciar sesión. El objetivo es que cada usuario tenga acceso únicamente a las funcionalidades correspondientes a su rol (estudiante, docente o administrador).
 
-## Objetivo
+## Alcance
 
-Brindar retroalimentación clara y precisa al usuario en el proceso de autenticación, de forma que sepa por qué su acceso no fue exitoso y pueda tomar acciones correctivas.
+- Creación de un **DashboardLayout** con diseño responsivo utilizando componentes de **Vuetify 3**.
+- Inclusión de un **menú lateral (Navigation Drawer)** con las opciones dinámicas según el rol del usuario.
+- Se agregó un **apartado de perfil** en la parte superior del menú lateral para mostrar el nombre y rol del usuario.
+- Implementación de un **menú adicional en la parte superior derecha** con acciones rápidas como:
+  - Acceder al perfil.
+  - Cambiar a modo oscuro.
+  - Cerrar sesión.
 
-## Cambios realizados
+## Comportamiento por rol
 
-- Se integró un sistema de mensajes de error en el flujo de login.
-- Los mensajes son visibles en la interfaz del formulario de inicio de sesión mediante un componente de alerta.
-- Se diferenciaron los principales casos de error, por ejemplo:
-  - Credenciales inválidas.
-  - Usuario no encontrado.
-  - Problemas de conexión con el servidor.
+- **Estudiante**: visualiza únicamente el menú de acceso a su sección académica.
+- **Docente**: accede a funcionalidades relacionadas con su gestión de clases.
+- **Administrador**: tiene acceso a todas las funcionalidades disponibles (incluye estudiante, docente y universidad).
 
-- Se garantizó que los mensajes se muestren de forma clara, en un tono entendible y no técnico para el usuario final.
+## Beneficio para el usuario
 
-## Resultados esperados
-
-- El usuario tiene claridad inmediata sobre la causa del error al intentar iniciar sesión.
-- Mejora la experiencia de uso, ya que no queda en incertidumbre sobre lo que falló.
-- Se establece una base para mantener consistencia en los mensajes de error dentro del sistema.
+- Experiencia personalizada según el rol.
+- Navegación clara y simplificada, mostrando solo lo relevante.
+- Posibilidad de gestionar acciones comunes desde el menú superior derecho.
