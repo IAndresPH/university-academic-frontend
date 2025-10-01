@@ -28,24 +28,24 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: () => import("@/components/dashboard/DashboardLayout.vue"),
-    meta: { requiresAuth: true },
-    // children: [
-    //   {
-    //     path: "student",
-    //     name: "DashboardStudent",
-    //     component: () => import("@/views/Dashboard/Student.vue"),
-    //   },
-    //   {
-    //     path: "teacher",
-    //     name: "DashboardTeacher",
-    //     component: () => import("@/views/Dashboard/Teacher.vue"),
-    //   },
-    //   {
-    //     path: "university",
-    //     name: "DashboardUniversity",
-    //     component: () => import("@/views/Dashboard/University.vue"),
-    //   },
-    // ],
+    meta: { requiresAuth: false },
+    children: [
+      {
+        path: "student",
+        name: "DashboardStudent",
+        component: () => import("@/views/Dashboard/StudentView.vue"),
+      },
+      {
+        path: "teacher",
+        name: "DashboardTeacher",
+        component: () => import("@/views/Dashboard/TeacherView.vue"),
+      },
+      {
+        path: "university",
+        name: "DashboardUniversity",
+        component: () => import("@/views/Dashboard/University.vue"),
+      },
+    ],
   },
 
   // {
