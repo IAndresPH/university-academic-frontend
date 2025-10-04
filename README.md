@@ -1,123 +1,107 @@
-# university-academic-frontend
+# 📦 Registro de Versiones del Proyecto
 
-Proyecto frontend académico construido con **Vue 3**.
-Se utiliza **npm** y **Node.js**, administrados mediante **Volta** para garantizar la uniformidad de versiones en todos los entornos de desarrollo.
-
----
-
-## Requisitos previos
-
-Antes de comenzar, asegúrese de tener instaladas las siguientes herramientas en Windows:
-
-- **Git**: permite clonar el repositorio y gestionar ramas. Puede descargarse desde [https://git-scm.com/download/win](https://git-scm.com/download/win).
-- **Volta**: gestiona automáticamente las versiones de Node y npm que el proyecto requiere. Instrucciones de instalación disponibles en [https://volta.sh](https://volta.sh).
-- **Visual Studio Code** (recomendado) con extensiones:
-  - **Prettier** (formato automático de código).
-  - **ESLint** (detección de errores en tiempo real).
+Este documento detalla las **versiones liberadas** del sistema, las **historias de usuario implementadas**, y los **cambios validados** en cada ciclo de release.  
+Cada sección representa un conjunto estable de funcionalidades desplegadas en producción.
 
 ---
 
-## Arquitectura del proyecto
+## Release 2025.08 – Primera Versión Estable
 
-La estructura del proyecto está organizada de forma modular y escalable, de la siguiente manera:
-
-```
-src/
- ├── assets/        # Recursos estáticos: imágenes, fuentes, estilos globales
- ├── components/    # Componentes reutilizables compartidos
- ├── constants/     # Definición de constantes globales
- ├── layouts/       # Plantillas de diseño general
- ├── modules/       # Módulos funcionales independientes
- │    └── <modulo>/
- │        ├── components/  # Componentes propios del módulo
- │        ├── router/      # Definición de rutas del módulo
- │        ├── store/       # Estado y acciones relacionadas
- │        └── views/       # Vistas específicas del módulo
- ├── router/       # Configuración global de enrutamiento
- ├── services/     # Servicios para comunicación con API externas o internas
- ├── store/        # Estado global de la aplicación
- ├── styles/       # Estilos globales, variables y utilidades CSS/SCSS
- ├── utils/        # Funciones utilitarias compartidas
- ├── App.vue       # Punto de entrada de la aplicación
- └── main.js       # Configuración principal del proyecto
-```
-
-Esta organización facilita el crecimiento del proyecto y la separación de responsabilidades por dominios funcionales.
+**Fecha de publicación:** 2025-10-04  
+**Tag:** `v2025.08.0`  
+**Entorno de origen:** `qa`  
+**Descripción general:**  
+Primera versión funcional del sistema, enfocada en la autenticación de usuarios, configuración base del frontend y seguridad inicial de acceso.
 
 ---
 
-## Configuración inicial
+### Configuración Inicial
 
-1. **Clonar el repositorio**
+**HU-101:** _Configuración base del proyecto frontend con Vue 3 + Vuetify._  
+Se creó la estructura inicial del proyecto con configuración de ESLint, Prettier y estructura escalable de carpetas para futuras extensiones.
 
-   - Abra PowerShell.
-   - Acceda a la carpeta de descargas con:
-     `cd %USERPROFILE%\Downloads`
-   - Clone el repositorio con:
-     `git clone https://github.com/IAndresPH/university-academic-frontend.git`
-
-2. **Acceder al proyecto clonado**
-
-   - Ingrese a la carpeta del proyecto:
-     `cd university-academic-frontend`
-
-3. **Instalar Volta** (si no está instalado en su sistema).
-
-   - Abra PowerShell como Administrador.
-   - Ejecute:
-     `iwr https://get.volta.sh | iex`
-   - Reinicie la terminal y verifique la instalación con:
-     `volta --version`
-
-4. **Fijar versiones de Node y npm** definidas en el proyecto.
-
-   - Desde la carpeta raíz del proyecto:
-     `volta install node@24.6.0`
-     `volta install npm@11.5.1`
-
-5. **Instalar dependencias**
-
-   - En la carpeta raíz del proyecto, ejecute:
-     `npm install`
-
-6. **Verificar configuración de Husky**
-
-   - Confirme que los hooks de Git se hayan configurado con:
-     `npm run prepare`
-
-7. **Ejecutar el proyecto en entorno local**
-   - Levante el servidor de desarrollo con:
-     `npm run serve`
-   - Acceda a la aplicación en: [http://localhost:8080](http://localhost:8080).
+**HU-102:** _Configuración del enrutamiento (router)._  
+Se definieron rutas públicas y privadas para controlar el acceso según la autenticación del usuario.
 
 ---
 
-## Convenciones de commits
+### Autenticación
 
-El proyecto utiliza **Commitlint** para asegurar un estándar de mensajes de commit uniforme y legible.
+**HU-103:** _Pantalla de inicio de sesión._  
+Se desarrolló la vista de login con validaciones de campos vacíos y opción de “Recordar sesión”.
 
-Los mensajes deben seguir el siguiente esquema:
+**HU-104:** _Recuperación de contraseña._  
+Se implementó el flujo para solicitar un correo de restablecimiento de contraseña.
 
-```
-<tipo>(HU-<número>): <descripción>
-```
+**HU-105:** _Registro de nuevos usuarios._  
+Se creó el formulario de registro con validaciones básicas y persistencia de datos hacia el backend.
 
-### Tipos permitidos
+**HU-106:** _Manejo de mensajes de error y validaciones._  
+Se añadieron mensajes claros y personalizables para errores comunes (credenciales inválidas, usuario inexistente, etc.).
 
-- **feat**: incorporación de una nueva funcionalidad.
-- **fix**: corrección de errores.
-- **docs**: cambios en la documentación.
-- **style**: cambios que no afectan la lógica (formato, espacios, comas).
-- **refactor**: cambios en el código que no corrigen errores ni agregan funciones.
-- **test**: inclusión o modificación de pruebas.
-- **chore**: cambios de mantenimiento que no afectan el código fuente ni pruebas.
+---
 
-### Reglas principales
+### Navegación
 
-- El `scope` debe corresponder al identificador de historia de usuario en el formato `HU-<número>`.
-- El asunto (subject) debe estar en **minúsculas**.
-- El asunto no puede estar vacío.
-- El asunto no debe superar los **70 caracteres**.
-- El `scope` es obligatorio y no puede estar vacío.
+**HU-107:** _Panel principal con roles y logout._  
+Tras el inicio de sesión, se habilita el panel principal con visibilidad de menús según el rol (estudiante, docente o administrador).  
+Se implementó además el cierre de sesión desde el panel, eliminando la sesión activa y redirigiendo al login.
 
-Estas reglas se validan automáticamente en cada commit.
+---
+
+### Resumen técnico
+
+- Framework base: **Vue 3 + Vuetify 3**
+- Linter y formato: **ESLint + Prettier**
+- Enrutamiento: **Vue Router 4**
+- Control de estado (planeado para 2025.09): **Pinia o Vuex 5**
+- Validaciones: **VeeValidate 4**
+- Gestión de sesiones: **JWT + almacenamiento en LocalStorage**
+
+---
+
+### Observaciones
+
+- Se validaron los flujos de autenticación con backend simulado (mock API).
+- Pendiente integración con API real para el próximo release (2025.09).
+- QA completado sin incidencias críticas.
+
+---
+
+## 🟠 Release 2025.09 – (Pendiente)
+
+**Fecha estimada:** —  
+**Tag:** —  
+**Objetivo:** Integración de backend real, gestión de estado global, y primeros módulos funcionales internos.
+
+**Historias planificadas (tentativas):**
+
+- HU-201: Integrar API real de autenticación.
+- HU-202: Implementar gestión de estado global con Pinia.
+- HU-203: Añadir dashboard dinámico con datos reales.
+
+---
+
+## 🔵 Release 2025.10 – (Pendiente)
+
+**Fecha estimada:** —  
+**Tag:** —  
+**Objetivo:** Mejoras de rendimiento, optimización visual y primeros reportes de usuario.
+
+**Historias planificadas (tentativas):**
+
+- HU-301: Implementar cache y lazy loading.
+- HU-302: Añadir gráficos estadísticos por usuario.
+- HU-303: Integración de analíticas básicas (métricas de uso).
+
+---
+
+## Notas de Control
+
+- Las versiones `release.s.YYYY.MM` son puntos de estabilidad previos a producción.
+- Cada versión validada en QA genera un nuevo release con su correspondiente tag (`vYYYY.MM.x`).
+- El contenido de este archivo se actualiza exclusivamente desde ramas `release.s.*`.
+
+---
+
+© 2025 - Equipo de desarrollo Frontend · Proyecto Académico Vue 3
