@@ -1,123 +1,79 @@
-# university-academic-frontend
+# 🧪 Entorno QA — Validaciones por Versión
 
-Proyecto frontend académico construido con **Vue 3**.
-Se utiliza **npm** y **Node.js**, administrados mediante **Volta** para garantizar la uniformidad de versiones en todos los entornos de desarrollo.
-
----
-
-## Requisitos previos
-
-Antes de comenzar, asegúrese de tener instaladas las siguientes herramientas en Windows:
-
-- **Git**: permite clonar el repositorio y gestionar ramas. Puede descargarse desde [https://git-scm.com/download/win](https://git-scm.com/download/win).
-- **Volta**: gestiona automáticamente las versiones de Node y npm que el proyecto requiere. Instrucciones de instalación disponibles en [https://volta.sh](https://volta.sh).
-- **Visual Studio Code** (recomendado) con extensiones:
-  - **Prettier** (formato automático de código).
-  - **ESLint** (detección de errores en tiempo real).
+Este documento consolida las **validaciones funcionales y técnicas** realizadas en el entorno de QA, separadas por versión.  
+Cada sección detalla las HU implementadas, el propósito de las pruebas y el estado de validación final.
 
 ---
 
-## Arquitectura del proyecto
+## Versión: release.s.2025.08
 
-La estructura del proyecto está organizada de forma modular y escalable, de la siguiente manera:
+### Fecha de integración
 
-```
-src/
- ├── assets/        # Recursos estáticos: imágenes, fuentes, estilos globales
- ├── components/    # Componentes reutilizables compartidos
- ├── constants/     # Definición de constantes globales
- ├── layouts/       # Plantillas de diseño general
- ├── modules/       # Módulos funcionales independientes
- │    └── <modulo>/
- │        ├── components/  # Componentes propios del módulo
- │        ├── router/      # Definición de rutas del módulo
- │        ├── store/       # Estado y acciones relacionadas
- │        └── views/       # Vistas específicas del módulo
- ├── router/       # Configuración global de enrutamiento
- ├── services/     # Servicios para comunicación con API externas o internas
- ├── store/        # Estado global de la aplicación
- ├── styles/       # Estilos globales, variables y utilidades CSS/SCSS
- ├── utils/        # Funciones utilitarias compartidas
- ├── App.vue       # Punto de entrada de la aplicación
- └── main.js       # Configuración principal del proyecto
-```
+`04/10/2025`
 
-Esta organización facilita el crecimiento del proyecto y la separación de responsabilidades por dominios funcionales.
+### Objetivo
 
----
+Primera validación funcional del sistema.  
+Se prueban las bases del frontend en **Vue 3 + Vuetify**, autenticación, registro, recuperación de contraseña y control de sesión.
 
-## Configuración inicial
+### Historias de Usuario Validadas
 
-1. **Clonar el repositorio**
+| Código     | Descripción resumida                                                                     | Resultado   |
+| :--------- | :--------------------------------------------------------------------------------------- | :---------- |
+| **HU-101** | Configuración base del proyecto con Vue, Vuetify, eslint, prettier y estructura modular. | ✅ Aprobado |
+| **HU-102** | Configuración del router con rutas públicas y privadas.                                  | ✅ Aprobado |
+| **HU-103** | Implementación del formulario de inicio de sesión con validaciones.                      | ✅ Aprobado |
+| **HU-104** | Flujo de recuperación de contraseña mediante correo de restablecimiento.                 | ✅ Aprobado |
+| **HU-105** | Registro de nuevos usuarios con validación de campos obligatorios.                       | ✅ Aprobado |
+| **HU-106** | Mensajes de error claros para distintos escenarios de autenticación.                     | ✅ Aprobado |
+| **HU-107** | Logout desde el panel principal con redirección segura al login.                         | ✅ Aprobado |
 
-   - Abra PowerShell.
-   - Acceda a la carpeta de descargas con:
-     `cd %USERPROFILE%\Downloads`
-   - Clone el repositorio con:
-     `git clone https://github.com/IAndresPH/university-academic-frontend.git`
+### Observaciones QA
 
-2. **Acceder al proyecto clonado**
-
-   - Ingrese a la carpeta del proyecto:
-     `cd university-academic-frontend`
-
-3. **Instalar Volta** (si no está instalado en su sistema).
-
-   - Abra PowerShell como Administrador.
-   - Ejecute:
-     `iwr https://get.volta.sh | iex`
-   - Reinicie la terminal y verifique la instalación con:
-     `volta --version`
-
-4. **Fijar versiones de Node y npm** definidas en el proyecto.
-
-   - Desde la carpeta raíz del proyecto:
-     `volta install node@24.6.0`
-     `volta install npm@11.5.1`
-
-5. **Instalar dependencias**
-
-   - En la carpeta raíz del proyecto, ejecute:
-     `npm install`
-
-6. **Verificar configuración de Husky**
-
-   - Confirme que los hooks de Git se hayan configurado con:
-     `npm run prepare`
-
-7. **Ejecutar el proyecto en entorno local**
-   - Levante el servidor de desarrollo con:
-     `npm run serve`
-   - Acceda a la aplicación en: [http://localhost:8080](http://localhost:8080).
+- Se validó la integración con el backend de autenticación (mock temporal).
+- El manejo de errores visuales cumple con los lineamientos de UX.
+- No se encontraron bugs críticos.
+- Se sugiere optimizar el tiempo de carga inicial (pendiente para próxima versión).
 
 ---
 
-## Convenciones de commits
+## Versión: release.s.2025.09 _(pendiente de validación futura)_
 
-El proyecto utiliza **Commitlint** para asegurar un estándar de mensajes de commit uniforme y legible.
+### Objetivo
 
-Los mensajes deben seguir el siguiente esquema:
+Extender el módulo de autenticación hacia la gestión de roles y permisos, y establecer navegación dinámica según tipo de usuario.
 
-```
-<tipo>(HU-<número>): <descripción>
-```
+### En planeación
 
-### Tipos permitidos
+- Módulo de roles y permisos.
+- Redirección condicional según tipo de usuario.
+- Pruebas integradas con backend real.
 
-- **feat**: incorporación de una nueva funcionalidad.
-- **fix**: corrección de errores.
-- **docs**: cambios en la documentación.
-- **style**: cambios que no afectan la lógica (formato, espacios, comas).
-- **refactor**: cambios en el código que no corrigen errores ni agregan funciones.
-- **test**: inclusión o modificación de pruebas.
-- **chore**: cambios de mantenimiento que no afectan el código fuente ni pruebas.
+### Estado actual
 
-### Reglas principales
+> En desarrollo (pendiente integración desde `develop`).
 
-- El `scope` debe corresponder al identificador de historia de usuario en el formato `HU-<número>`.
-- El asunto (subject) debe estar en **minúsculas**.
-- El asunto no puede estar vacío.
-- El asunto no debe superar los **70 caracteres**.
-- El `scope` es obligatorio y no puede estar vacío.
+---
 
-Estas reglas se validan automáticamente en cada commit.
+## Versión: release.s.2025.10 _(pendiente de futuras HU)_
+
+### Objetivo
+
+Implementar mejoras de rendimiento, experiencia de usuario y primeras funciones del panel principal.
+
+### Estado actual
+
+> En etapa de diseño funcional (no se han integrado HU).
+
+---
+
+## Notas finales
+
+- Cada HU aprobada en QA pasa posteriormente a la rama `release.s.<versión>`.
+- Los bugs encontrados deben registrarse en el tablero de incidencias y corregirse en ramas `fix/*` derivadas de `develop`.
+- Este documento debe mantenerse actualizado con cada merge de `develop → qa`.
+
+---
+
+**Última actualización:** `04/10/2025`  
+_Responsable QA:_ Equipo Frontend — _Validación realizada sobre build v2025.08.0_
