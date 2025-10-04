@@ -1,107 +1,90 @@
-# 📦 Registro de Versiones del Proyecto
+# Proyecto Frontend – Versión de Producción 2025.08
 
-Este documento detalla las **versiones liberadas** del sistema, las **historias de usuario implementadas**, y los **cambios validados** en cada ciclo de release.  
-Cada sección representa un conjunto estable de funcionalidades desplegadas en producción.
+Este repositorio contiene la **versión estable en producción (v2025.08.0)** del sistema frontend, desarrollada en **Vue 3** con **Vuetify**, enfocada en autenticación de usuarios, gestión de sesiones y estructura escalable para futuras iteraciones.
 
 ---
 
-## Release 2025.08 – Primera Versión Estable
+## Estado del Proyecto
 
-**Fecha de publicación:** 2025-10-04  
+| Entorno        | Rama                | Estado                    |
+| -------------- | ------------------- | ------------------------- |
+| Desarrollo     | `develop`           | ✅ Activa                 |
+| QA / Pruebas   | `qa`                | ✅ Validado               |
+| Release actual | `release.s.2025.08` | ✅ Finalizado             |
+| Producción     | `main`              | 🟢 Estable (`v2025.08.0`) |
+
+---
+
+## Versión en Producción – **Release 2025.08**
+
 **Tag:** `v2025.08.0`  
-**Entorno de origen:** `qa`  
-**Descripción general:**  
-Primera versión funcional del sistema, enfocada en la autenticación de usuarios, configuración base del frontend y seguridad inicial de acceso.
+**Fecha de despliegue:** 2025-10-04  
+**Objetivo:** Primera versión funcional estable del sistema.  
+**Entorno de origen:** `release.s.2025.08`
+
+### Funcionalidades Principales
+
+#### Configuración Base
+
+- **HU-101:** Configuración inicial del proyecto con **Vue 3 + Vuetify 3**.
+- **HU-102:** Configuración del enrutamiento con **rutas privadas y públicas** según el estado de autenticación.
+- Se establecieron **buenas prácticas de linting** (ESLint + Prettier) y una **estructura escalable de carpetas**.
+
+#### Autenticación
+
+- **HU-103:** Pantalla de inicio de sesión con validaciones de campos vacíos y opción de recordar sesión.
+- **HU-104:** Flujo completo de recuperación de contraseña por correo electrónico.
+- **HU-105:** Registro de nuevos usuarios con validaciones básicas.
+- **HU-106:** Manejo de mensajes claros de error para el usuario (credenciales inválidas, usuario no encontrado, etc.).
+
+#### Navegación
+
+- **HU-107:** Panel principal dinámico con visibilidad de menús según el rol del usuario (**estudiante**, **docente** o **administrador**).
+- Cierre de sesión desde el panel, eliminando la sesión activa y redirigiendo al login.
 
 ---
 
-### Configuración Inicial
+## 🧰 Stack Tecnológico
 
-**HU-101:** _Configuración base del proyecto frontend con Vue 3 + Vuetify._  
-Se creó la estructura inicial del proyecto con configuración de ESLint, Prettier y estructura escalable de carpetas para futuras extensiones.
-
-**HU-102:** _Configuración del enrutamiento (router)._  
-Se definieron rutas públicas y privadas para controlar el acceso según la autenticación del usuario.
-
----
-
-### Autenticación
-
-**HU-103:** _Pantalla de inicio de sesión._  
-Se desarrolló la vista de login con validaciones de campos vacíos y opción de “Recordar sesión”.
-
-**HU-104:** _Recuperación de contraseña._  
-Se implementó el flujo para solicitar un correo de restablecimiento de contraseña.
-
-**HU-105:** _Registro de nuevos usuarios._  
-Se creó el formulario de registro con validaciones básicas y persistencia de datos hacia el backend.
-
-**HU-106:** _Manejo de mensajes de error y validaciones._  
-Se añadieron mensajes claros y personalizables para errores comunes (credenciales inválidas, usuario inexistente, etc.).
+| Componente                   | Tecnología / Versión |
+| ---------------------------- | -------------------- |
+| Framework base               | Vue 3                |
+| UI Library                   | Vuetify 3            |
+| Enrutamiento                 | Vue Router 4         |
+| Validaciones                 | VeeValidate 4        |
+| Linter y formato             | ESLint + Prettier    |
+| Gestión de sesiones          | JWT + LocalStorage   |
+| Control de estado (planeado) | Pinia / Vuex 5       |
+| Lenguaje base                | JavaScript (ES2023)  |
 
 ---
 
-### Navegación
+## Entorno y Despliegue
 
-**HU-107:** _Panel principal con roles y logout._  
-Tras el inicio de sesión, se habilita el panel principal con visibilidad de menús según el rol (estudiante, docente o administrador).  
-Se implementó además el cierre de sesión desde el panel, eliminando la sesión activa y redirigiendo al login.
+### Requisitos
 
----
+- Node.js 20+
+- npm 9+
+- Acceso a entorno backend (API simulada o real)
 
-### Resumen técnico
+### Instalación
 
-- Framework base: **Vue 3 + Vuetify 3**
-- Linter y formato: **ESLint + Prettier**
-- Enrutamiento: **Vue Router 4**
-- Control de estado (planeado para 2025.09): **Pinia o Vuex 5**
-- Validaciones: **VeeValidate 4**
-- Gestión de sesiones: **JWT + almacenamiento en LocalStorage**
+```bash
+# Clonar el proyecto
+git clone <url-del-repositorio>
+cd <nombre-del-proyecto>
 
----
+# Instalar dependencias
+npm install
 
-### Observaciones
+# Ejecutar en modo producción
+npm run build
 
-- Se validaron los flujos de autenticación con backend simulado (mock API).
-- Pendiente integración con API real para el próximo release (2025.09).
-- QA completado sin incidencias críticas.
+# O correr en modo desarrollo
+npm run dev
+```
 
----
+## 🧾 Licencia
 
-## 🟠 Release 2025.09 – (Pendiente)
-
-**Fecha estimada:** —  
-**Tag:** —  
-**Objetivo:** Integración de backend real, gestión de estado global, y primeros módulos funcionales internos.
-
-**Historias planificadas (tentativas):**
-
-- HU-201: Integrar API real de autenticación.
-- HU-202: Implementar gestión de estado global con Pinia.
-- HU-203: Añadir dashboard dinámico con datos reales.
-
----
-
-## 🔵 Release 2025.10 – (Pendiente)
-
-**Fecha estimada:** —  
-**Tag:** —  
-**Objetivo:** Mejoras de rendimiento, optimización visual y primeros reportes de usuario.
-
-**Historias planificadas (tentativas):**
-
-- HU-301: Implementar cache y lazy loading.
-- HU-302: Añadir gráficos estadísticos por usuario.
-- HU-303: Integración de analíticas básicas (métricas de uso).
-
----
-
-## Notas de Control
-
-- Las versiones `release.s.YYYY.MM` son puntos de estabilidad previos a producción.
-- Cada versión validada en QA genera un nuevo release con su correspondiente tag (`vYYYY.MM.x`).
-- El contenido de este archivo se actualiza exclusivamente desde ramas `release.s.*`.
-
----
-
-© 2025 - Equipo de desarrollo Frontend · Proyecto Académico Vue 3
+Este proyecto es de uso interno para fines académicos y de desarrollo controlado.
+© 2025 – Equipo de desarrollo Frontend · Proyecto Académico Vue 3
